@@ -29,7 +29,7 @@ class Section(db.Model):
             ('github_url', 'https://github.com/kennethlepas', 8),
             ('linkedin_url', 'https://linkedin.com/in/kennethlepas', 9),
             ('twitter_url', 'https://twitter.com/kennethlepas', 10),
-            ('resume_url', '/static/certificates/Recent_CV.pdf', 11),
+            ('resume_url', '/static/certificates/cv.pdf', 11),
             ('technical_skills', 'Software Engineering, Python, Flask, SQLite, JavaScript, CCNA, Ethical Hacking, Nmap, Metasploit, Power BI, Data Analytics, Human-Centered Design, TCP/IP, Routing & Switching, Penetration Testing', 12),
             ('profile_picture_url', '/static/certificates/profile.jpeg', 13),
         ]
@@ -103,7 +103,7 @@ class Project(db.Model):
             ('Nyumbanifix Platform', 'A comprehensive service provider marketplace connecting homeowners with skilled technicians. Features role-based access for both customers and service providers.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 2),
             ('BloodLink Admin Portal', 'Advanced administrative dashboard for hospital and platform-wide blood donation management, featuring reporting tools and inventory tracking.', 'JavaScript, Node.js, Firebase', 'https://github.com/kennethlepas/bloodlink-admin', '', '', 3),
             ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 4),
-            ('Data Analytics Portfolio', 'A repository showcasing advanced data processing and visualization projects using real-world datasets and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 5),
+            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diebetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 5),
         ]
         for title, desc, tech, github, demo, img, order in defaults:
             existing = cls.query.filter_by(title=title).first()
@@ -139,15 +139,15 @@ class Certification(db.Model):
     @classmethod
     def create_default_certifications(cls):
         defaults = [
-            ('Human-Centered Design Training', 'Egerton University & Michigan State University', 'March 2026', '', 'HCD training certificate.jpg', 1),
-            ('Complete Network Hacking Course 2026', 'Udemy', 'March 2026', 'UC-71fbd1b4-5701-414b-a45c-4b61a7a4d6e3', 'Ethical Hacking Certificate Udemy.pdf', 2),
-            ('Data Analytics Training', 'ICT Authority Kenya & Data Breed Africa', 'March 2026', 'ICTA-1773559998-6084-39808', 'ICT  Authority Data Analytics Training Certificate.pdf', 3),
-            ('Ethical Hacking', 'Cisco Networking Academy', 'Feb 2026', '', 'Ethical_Hacker_certificate_kennethlepas-gmail-com_e7fc8021-722a-4d7a-a419-254d79638cd9.pdf', 4),
-            ('CCNAv7: Switching, Routing, and Wireless Essentials', 'Cisco Networking Academy', 'Aug 2024', '', 'CCNA 2.pdf', 5),
-            ('CCNAv7: Introduction to Networks', 'Cisco Networking Academy', 'Apr 2024', '', 'CCNA 1.pdf', 6),
-            ('Introduction to Data Science', 'Kenyatta University via Cisco NetAcad', 'May 2024', '', 'Introduction_to_Data_Science_certificate_kennethlepas-gmail-com_192e0d20-3bd3-496f-9e41-a4ac4afd5ee2.pdf', 7),
-            ('Product Management 101', 'Simplilearn SkillUp', 'Dec 2025', '9533677', 'product manager certificate.pdf', 8),
-            ('Professional Recommendation', 'Recommendation from Industry Mentor', '2026', '', 'Recommendetion Letter.pdf', 9),
+            ('Human-Centered Design Training', 'Egerton University & Michigan State University', 'March 2026', '', 'hcd.jpg', 1),
+            ('Complete Network Hacking Course 2026', 'Udemy', 'March 2026', 'UC-71fbd1b4-5701-414b-a45c-4b61a7a4d6e3', 'hacking_udemy.pdf', 2),
+            ('Data Analytics Training', 'ICT Authority Kenya & Data Breed Africa', 'March 2026', 'ICTA-1773559998-6084-39808', 'ict_analytics.pdf', 3),
+            ('Ethical Hacking', 'Cisco Networking Academy', 'Feb 2026', '', 'hacking_cisco.pdf', 4),
+            ('CCNAv7: Switching, Routing, and Wireless Essentials', 'Cisco Networking Academy', 'Aug 2024', '', 'ccna2.pdf', 5),
+            ('CCNAv7: Introduction to Networks', 'Cisco Networking Academy', 'Apr 2024', '', 'ccna1.pdf', 6),
+            ('Introduction to Data Science', 'Kenyatta University via Cisco NetAcad', 'May 2024', '', 'datascience_cisco.pdf', 7),
+            ('Product Management 101', 'Simplilearn SkillUp', 'Dec 2025', '9533677', 'product_manager.pdf', 8),
+            ('Professional Recommendation', 'Recommendation from Industry Mentor', '2026', '', 'recommendation.pdf', 9),
             ('Academic Transcript', 'Egerton University', '2026', '', 'transcript.png', 10),
         ]
         for name, issuer, date, cred_id, pdf_filename, order in defaults:
