@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Kenneth Lepas Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            color: #1e293b;
+        }
+
+        .log-item {
+            padding: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 1rem;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-meta {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .log-name {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .log-msg {
+            color: #334155;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .btn-logout {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="admin-body">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">KL Admin</div>
+            <ul class="nav-links">
+                <li><a href="/">View Site</a></li>
+                <li><button onclick="logout()" class="btn-logout">Logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <div id="auth-status" style="color: #10b981;"><i class="fas fa-lock"></i> Secure Session</div>
+        </div>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h2>Add Certificate</h2>
+                <form id="add-cert-form">
+                    <div class="form-group">
+                        <input type="text" id="cert-name" placeholder="Certificate Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="cert-issuer" placeholder="Issuer (e.g., Egerton University)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="cert-date" placeholder="Date Earned (e.g., March 2026)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="cert-id" placeholder="Credential ID (Optional)">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="cert-file" placeholder="PDF Filename (e.g., transcript.png)" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin: 0;">Add
+                        Certificate</button>
+                </form>
+                <div id="cert-message" style="margin-top: 1rem;"></div>
+            </div>
+
+            <div class="admin-card">
+                <h2>Update Site Content</h2>
+                <form id="update-section-form">
+                    <div class="form-group">
+                        <select id="section-key" onchange="loadSectionContent()" required>
+                            <option value="">-- Select Section to Update --</option>
+                            <option value="hero_subtitle">Hero Subtitle</option>
+                            <option value="about">About Section</option>
+                            <option value="professional_statement">Professional Statement</option>
+                            <option value="technical_skills">Technical Skills (comma separated)</option>
+                            <option value="profile_picture_url">Profile Picture URL</option>
+                            <option value="contact_email">Email</option>
+                            <option value="contact_phone">Phone</option>
+                            <option value="contact_address">Address</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="section-content" rows="4"
+                            style="width: 100%; padding: 0.75rem; border: 1px solid #e2e8f0; border-radius: 8px;"
+                            placeholder="Enter new content here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin: 0;">Update
+                        Content</button>
+                </form>
+                <div id="section-message" style="margin-top: 1rem;"></div>
+            </div>
+
+            <div class="admin-card" style="grid-column: span 2;">
+                <h2>System Logs (Recent Messages)</h2>
+                <div id="logs-container">
+                    <div class="loading">Loading logs...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadLogs() {
+            try {
+                const res = await fetch('/api/admin/messages');
+                if (!res.ok) throw new Error('Unauthorized');
+                const logs = await res.json();
+
+                const container = document.getElementById('logs-container');
+                if (logs.length === 0) {
+                    container.innerHTML = '<p>No messages found.</p>';
+                    return;
+                }
+
+                container.innerHTML = logs.map(log => `
+                    <div class="log-item">
+                        <div class="log-meta">
+                            <span class="log-name">${log.name}</span> (${log.email}) • ${log.created_at}
+                        </div>
+                        <div class="log-msg">${log.message}</div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('logs-container').innerHTML = '<p style="color: red;">Failed to load logs. Session expired.</p>';
+            }
+        }
+
+        document.getElementById('add-cert-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('cert-name').value,
+                issuer: document.getElementById('cert-issuer').value,
+                date_earned: document.getElementById('cert-date').value,
+                credential_id: document.getElementById('cert-id').value,
+                pdf_filename: document.getElementById('cert-file').value
+            };
+
+            try {
+                const res = await fetch('/api/admin/certifications', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    document.getElementById('cert-message').innerHTML = '<span style="color: #10b981;">✓ Added successfully!</span>';
+                    e.target.reset();
+                }
+            } catch (err) {
+                document.getElementById('cert-message').innerHTML = '<span style="color: #ef4444;">Error adding certificate.</span>';
+            }
+        });
+
+        async function loadSectionContent() {
+            const key = document.getElementById('section-key').value;
+            if (!key) return;
+
+            try {
+                const res = await fetch('/api/sections');
+                const sections = await res.json();
+                const section = sections.find(s => s.key === key);
+                if (section) {
+                    document.getElementById('section-content').value = section.content;
+                }
+            } catch (err) { console.error('Error loading section:', err); }
+        }
+
+        document.getElementById('update-section-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                key: document.getElementById('section-key').value,
+                content: document.getElementById('section-content').value
+            };
+
+            try {
+                const res = await fetch('/api/admin/sections', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                if (result.success) {
+                    document.getElementById('section-message').innerHTML = '<span style="color: #10b981;">✓ Section updated!</span>';
+                }
+            } catch (err) {
+                document.getElementById('section-message').innerHTML = '<span style="color: #ef4444;">Error updating section.</span>';
+            }
+        });
+
+        function logout() {
+            window.location.href = '/logout';
+        }
+
+        // Initialize
+        loadLogs();
+    </script>
+</body>
+
+</html>

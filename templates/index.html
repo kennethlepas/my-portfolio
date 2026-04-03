@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenneth Lepas | Computer Science Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#home" class="logo-text">KL</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container container">
+                <div class="hero-image">
+                    <img id="hero-profile-picture" src="/static/certificates/profile.jpeg" alt="Kenneth Lepas">
+                </div>
+                <div class="hero-text">
+                    <div class="welcome-tag">Welcome to the Portfolio of</div>
+                    <h1 id="hero-title">Kenneth Lepas</h1>
+                    <p id="hero-subtitle">Computer Science Professional | Software Engineer | Network Security
+                        Specialist | Data Analyst</p>
+
+                    <div class="professional-banner">
+                        <div class="banner-content">
+                            <p>Final-year B.Sc. Computer Science student at Egerton University with a focus on Software
+                                Engineering, Networking, Data Analytics, and Cybersecurity. Certified in CCNA, Ethical
+                                Hacking,Product Management, and Data
+                                Analytics, I am passionate about building secure, scalable, and user-centric digital
+                                solutions.</p>
+                            <div class="banner-highlights">
+                                <span><i class="fas fa-shield-alt"></i> Security Expert</span>
+                                <span><i class="fas fa-code"></i> Full-Stack Dev</span>
+                                <span><i class="fas fa-chart-line"></i> Data Analyst</span>
+                                <span><i class="fas fa-users"></i> HCD Practitioner</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a id="resume-hero" href="#" target="_blank" class="btn btn-outline"><i
+                                class="fas fa-file-pdf"></i> View Resume</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <div class="glass-card">
+                            <h3>Professional Profile</h3>
+                            <p id="about_profile">Loading profile...</p>
+                            <p id="professional_statement">Loading statement...</p>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="glass-card" style="height: 100%;">
+                            <h3>Quick Facts</h3>
+                            <div class="stat-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div>
+                                    <strong>Education</strong>
+                                    <p>B.Sc. Computer Science (Final Year)</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div>
+                                    <strong>Expected Graduation</strong>
+                                    <p>November 2026</p>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-award"></i>
+                                <div>
+                                    <strong>Certifications</strong>
+                                    <p>CCNA, Ethical Hacking, Data Analytics</p>
+                                </div>
+                            </div>
+                            <div class="skills" style="margin-top: 2rem;">
+                                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Expertise</h3>
+                                <div class="skill-tags" id="technical_skills">
+                                    <span>Loading skills...</span>
+                                </div>
+                            </div>
+                            <div class="social-about"
+                                style="margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 1.5rem;">
+                                <a href="https://github.com/kennethlepas" target="_blank"
+                                    style="margin-right: 1.5rem; color: #64748b;"><i class="fab fa-github"></i></a>
+                                <a href="https://linkedin.com/in/kennethlepas" target="_blank"
+                                    style="margin-right: 1.5rem; color: #64748b;"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://twitter.com/kennethlepas" target="_blank" style="color: #64748b;"><i
+                                        class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid" id="projects-grid">
+                    <div class="loading">Loading projects...</div>
+                </div>
+                <div class="github-cta">
+                    <a href="https://github.com/kennethlepas" target="_blank" class="btn btn-github">
+                        <i class="fab fa-github"></i> View All Projects on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="certifications">
+            <div class="container">
+                <h2>Certifications & Credentials</h2>
+                <div class="certs-grid" id="certs-grid">
+                    <div class="loading">Loading certifications...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Let's Connect</h3>
+                        <p>I'm currently looking for internship or entry-level opportunities in software development,
+                            network security, or data analytics.</p>
+                        <div class="contact-details">
+                            <p><i class="fas fa-envelope"></i> kennethlepas@gmail.com</p>
+                            <p><i class="fas fa-phone"></i> 0115408612</p>
+                            <p><i class="fab fa-github"></i> <a href="https://github.com/kennethlepas"
+                                    target="_blank">github.com/kennethlepas</a></p>
+                            <p><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/kennethlepas"
+                                    target="_blank">linkedin.com/in/kennethlepas</a></p>
+                            <p><i class="fab fa-twitter"></i> <a href="https://twitter.com/kennethlepas"
+                                    target="_blank">twitter.com/kennethlepas</a></p>
+                        </div>
+                        <div class="resume-download">
+                            <a id="resume-contact" href="#" target="_blank" class="btn btn-outline"><i
+                                    class="fas fa-file-pdf"></i> View Resume (PDF)</a>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message <i
+                                class="fas fa-paper-plane"></i></button>
+                        <div id="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="https://github.com/kennethlepas" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/kennethlepas" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com/kennethlepas" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="mailto:kennethlepas@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+                <p>&copy; 2026 Kenneth Lepas. All rights reserved. | <a href="/admin?auth=admin123"
+                        style="color: #64748b; text-decoration: none; font-size: 0.8rem;">Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="certModal" class="modal">
+        <div class="modal-content certificate-modal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <iframe id="pdfViewer" src="" frameborder="0" style="display: none;"></iframe>
+                <img id="imageViewer" src="" alt="Certificate" style="display: none;">
+            </div>
+            <div class="modal-footer">
+                <a id="modalDownload" href="#" download class="btn-download-modal"><i class="fas fa-download"></i>
+                    Download Original</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative Background Elements -->
+    <div class="bg-blob-1"></div>
+    <div class="bg-blob-2"></div>
+    <div class="bg-blob-3"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
