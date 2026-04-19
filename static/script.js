@@ -13,6 +13,12 @@ async function loadContent() {
                 } else if (section.key === 'profile_picture_url') {
                     const heroProfilePic = document.getElementById('hero-profile-picture');
                     if (heroProfilePic) heroProfilePic.src = section.content;
+                } else if (['education_content', 'experience_content', 'leadership_content'].includes(section.key)) {
+                    element.innerHTML = section.content.split(' | ').map(item => `<div class="content-item">${escapeHtml(item)}</div>`).join('');
+                } else if (section.key === 'hobbies_content') {
+                    element.innerHTML = section.content.split(', ').map(hobby => `<span class="hobby-tag">${escapeHtml(hobby)}</span>`).join('');
+                } else if (section.key === 'hero_achievements') {
+                    element.innerHTML = section.content.split(', ').map(ach => `<span><i class="fas fa-check-circle"></i> ${escapeHtml(ach)}</span>`).join('');
                 } else {
                     element.textContent = section.content;
                 }
@@ -170,7 +176,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 function switchScreen(sectionId) {
-    const sections = ['home', 'about', 'projects', 'certifications', 'contact'];
+    const sections = ['home', 'about', 'experience', 'leadership', 'projects', 'certifications', 'contact'];
     const targetId = sectionId.replace('#', '');
 
     sections.forEach(id => {

@@ -18,11 +18,15 @@ class Section(db.Model):
     def create_default_sections(cls):
         defaults = [
             ('hero_title', 'Kenneth Lepas', 1),
-            ('hero_subtitle', 'Computer Science Professional | Software Engineer | Network Security Specialist | Data Analyst', 2),
-            ('hero_bio', 'Final-year B.Sc. Computer Science student at Egerton University with a focus on building secure, scalable applications and data-driven insights. Passionate about leveraging technology for real-world impact.', 2.1),
-            ('hero_achievements', 'Certified CCNA & Ethical Hacker, 5+ Professional Certifications, End-to-End System Developer', 2.2),
-            ('about_profile', 'Final-year Bachelor of Science in Computer Science student at Egerton University (Graduating Nov 2026). I combine a strong technical foundation in Software Engineering, Networking, and Cybersecurity with a user-centric approach gained through Human-Centered Design training. Passionate about building secure, scalable, and impactful digital solutions to address real-world challenges.', 3),
-            ('professional_statement', 'Dedicated Software Engineering professional with a focus on Network Security and Data Analytics. Certified in CCNA, Ethical Hacking, and Data Science. I am committed to leveraging digital technologies for sustainability and innovation, ensuring every solution is both technically robust and user-focused. Currently in my final year, ready to contribute to global technology initiatives.', 4),
+            ('hero_subtitle', 'Final-year B.Sc. Computer Science Student | Software Engineer | Network Security | Data Analyst', 2),
+            ('hero_bio', 'Final-year undergraduate at Egerton University with hands-on experience in software development, networking, cybersecurity, and data analytics. Certified by IBM, Microsoft, Cisco, and ICT Authority Kenya.', 2.1),
+            ('hero_achievements', 'Certified CCNA & Ethical Hacker, 10+ Professional Certifications, End-to-End System Developer', 2.2),
+            ('about_profile', 'Final-year Bachelor of Science in Computer Science student at Egerton University (Graduating Nov 2026). I combine a strong technical foundation in Software Engineering, Networking, and Cybersecurity with a user-centric approach gained through Human-Centered Design training. Fully available and eager to contribute to a professional environment immediately.', 3),
+            ('professional_statement', 'Dedicated Software Engineering professional with a focus on Network Security and Data Analytics. Certified in CCNA, Ethical Hacking, and Data Science. I have successfully completed all academic coursework and am pending graduation in November 2026. Committed to building secure, scalable, and practical user-centered solutions.', 4),
+            ('education_content', 'BSc. Computer Science, Egerton University (2022 – Nov 2026 Expected). Key Modules: Programming, Networking, Data Science, Software Development, and Database Systems. | KCSE, Kolanya Boys High School (2018 – 2021). Mean Grade: B+', 4.1),
+            ('experience_content', 'ICT Attachment, Department of ICT and E-Government, Kakamega County HQ (Jan – Mar 2025). Supported ICT infrastructure operations, maintained government systems and networks, and assisted in e-government service delivery. Gained hands-on exposure to public sector ICT management and network troubleshooting.', 4.2),
+            ('leadership_content', 'Christian Union Leader at Kolanya Boys High School. | Technical Project Group Leader at Egerton University. | Participant in Egerton-MSU Cross-Institutional Collaborative Program.', 4.3),
+            ('hobbies_content', 'Chess (Strategic discipline), Nature walks (Reflection and wellbeing), Football (Recreational play).', 4.4),
             ('contact_email', 'kennethlepas@gmail.com', 5),
             ('contact_phone', '0115408612', 6),
             ('contact_address', '50100, Matungu, Kenya', 7),
@@ -30,7 +34,7 @@ class Section(db.Model):
             ('linkedin_url', 'https://linkedin.com/in/kennethlepas', 9),
             ('twitter_url', 'https://twitter.com/kennethlepas', 10),
             ('resume_url', '/static/certificates/cv.pdf', 11),
-            ('technical_skills', 'Software Engineering, Python, Flask, SQLite, JavaScript, CCNA, Ethical Hacking, Nmap, Metasploit, Power BI, Data Analytics, Human-Centered Design, TCP/IP, Routing & Switching, Penetration Testing', 12),
+            ('technical_skills', 'Python, Flask, JavaScript, SQL, TypeScript, React Native, Firebase, Node.js, C#, .NET, TCP/IP, VLANs, Routing & Switching, Ethical Hacking, Penetration Testing, Nmap, Metasploit, Power BI, Data Analytics, Human-Centered Design, Enterprise Design Thinking', 12),
             ('profile_picture_url', '/static/certificates/profile.jpeg', 13),
         ]
         for key, content, order in defaults:
@@ -99,11 +103,12 @@ class Project(db.Model):
     @classmethod
     def create_default_projects(cls):
         defaults = [
-            ('BloodLink User App', 'A robust blood donation platform connecting donors with recipients and hospitals. Features include real-time tracking, hospital referrals, and automated matching.', 'TypeScript, React Native, Firebase', 'https://github.com/kennethlepas/BloodLink-app', '', '', 1),
-            ('Nyumbanifix Platform', 'A comprehensive service provider marketplace connecting homeowners with skilled technicians. Features role-based access for both customers and service providers.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 2),
-            ('BloodLink Admin Portal', 'Advanced administrative dashboard for hospital and platform-wide blood donation management, featuring reporting tools and inventory tracking.', 'JavaScript, Node.js, Firebase', 'https://github.com/kennethlepas/bloodlink-admin', '', '', 3),
-            ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 4),
-            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diebetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 5),
+            ('BloodLink App', 'Mobile application connecting blood donors with recipients in real time. Features include location-based matching, real-time tracking, and hospital referrals.', 'React Native, Firebase, TypeScript', 'https://github.com/kennethlepas/BloodLink-app', '', '', 1),
+            ('NyumbaniFix App', 'Home services and repair booking platform connecting homeowners with verified local technicians. Focused on intuitive user experience and service categorisation.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 2),
+            ('MkulimaHub', 'Digital platform providing smallholder farmers with precision agriculture tools, real-time market data, and access to advisory services. Applied human-centered design for low-digital-literacy users.', 'Python, Flask, SQLite', 'https://github.com/kennethlepas/MkulimaHub', '', '', 3),
+            ('BloodLink Admin Portal', 'Advanced administrative dashboard for hospital and platform-wide blood donation management, featuring reporting tools and inventory tracking.', 'JavaScript, Node.js, Firebase', 'https://github.com/kennethlepas/bloodlink-admin', '', '', 4),
+            ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 5),
+            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diabetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 6),
         ]
         for title, desc, tech, github, demo, img, order in defaults:
             existing = cls.query.filter_by(title=title).first()
@@ -149,6 +154,9 @@ class Certification(db.Model):
             ('Product Management 101', 'Simplilearn SkillUp', 'Dec 2025', '9533677', 'product_manager.pdf', 8),
             ('Professional Recommendation', 'Recommendation from Industry Mentor', '2026', '', 'recommendation.pdf', 9),
             ('Academic Transcript', 'Egerton University', '2026', '', 'transcript.png', 10),
+            ('AI Skills badge 2025-26', 'Microsoft Elevate', 'April 2026', '6p4OeYk9', 'ai.pdf', 11),
+            ('Enterprise Design Thinking Practitioner', 'IBM SkillsBuild', 'April 2026', 'XbC8qNW3', 'design.pdf', 12),
+            ('Financial Literacy Training', 'LifeSmart', '2026', '', 'smart.jpeg', 13),
         ]
         for name, issuer, date, cred_id, pdf_filename, order in defaults:
             existing = cls.query.filter_by(name=name).first()
