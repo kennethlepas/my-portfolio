@@ -103,11 +103,13 @@ class Project(db.Model):
     @classmethod
     def create_default_projects(cls):
         defaults = [
-            ('BloodLink App', 'Comprehensive blood donation ecosystem featuring a mobile application for donors/recipients and a web-based administrative dashboard for hospital management.', 'React Native, Firebase, Node.js, TypeScript', 'https://github.com/kennethlepas/BloodLink-app', '', '', 1),
-            ('NyumbaniFix App', 'Professional home repair and services platform encompassing a mobile application for booking and a web-based admin panel for service tracking.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 2),
-            ('MkulimaHub', 'Digital platform providing smallholder farmers with precision agriculture tools, real-time market data, and access to advisory services. Applied human-centered design for low-digital-literacy users.', 'Python, Flask, SQLite', 'https://github.com/kennethlepas/MkulimaHub', '', '', 3),
-            ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 4),
-            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diabetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 5),
+            ('BloodLink Mobile App', 'A robust mobile application connecting blood donors with recipients and hospitals. Features include real-time tracking, location-based services, and automated matching.', 'React Native, Firebase, TypeScript', 'https://github.com/kennethlepas/BloodLink-app', '', '', 1),
+            ('BloodLink Admin Portal', 'Advanced administrative dashboard for hospital and platform-wide blood donation management, featuring reporting tools and inventory tracking.', 'JavaScript, Node.js, Firebase', 'https://github.com/kennethlepas/bloodlink-admin', '', '', 2),
+            ('NyumbaniFix Mobile App', 'Home services and repair booking platform connecting homeowners with verified local technicians. Features include professional repair booking and service tracking.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 3),
+            ('NyumbaniFix Admin Panel', 'Advanced administrative dashboard for managing service requests, technician assignments, and platform-wide monitoring.', 'Python, Flask, SQLite', 'https://github.com/kennethlepas/nyumbanifix_admin', '', '', 4),
+            ('MkulimaHub (Research Project)', 'Digital platform concept providing smallholder farmers with precision agriculture tools and real-time market data. Focused on human-centered design for low-digital-literacy users.', 'Human-Centered Design, Python, Data Analytics', '', '', '', 5),
+            ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 6),
+            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diabetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 7),
         ]
         for title, desc, tech, github, demo, img, order in defaults:
             existing = cls.query.filter_by(title=title).first()
