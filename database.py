@@ -103,12 +103,11 @@ class Project(db.Model):
     @classmethod
     def create_default_projects(cls):
         defaults = [
-            ('BloodLink App', 'Mobile application connecting blood donors with recipients in real time. Features include location-based matching, real-time tracking, and hospital referrals.', 'React Native, Firebase, TypeScript', 'https://github.com/kennethlepas/BloodLink-app', '', '', 1),
-            ('NyumbaniFix App', 'Home services and repair booking platform connecting homeowners with verified local technicians. Focused on intuitive user experience and service categorisation.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 2),
+            ('BloodLink App', 'Comprehensive blood donation ecosystem featuring a mobile application for donors/recipients and a web-based administrative dashboard for hospital management.', 'React Native, Firebase, Node.js, TypeScript', 'https://github.com/kennethlepas/BloodLink-app', '', '', 1),
+            ('NyumbaniFix App', 'Professional home repair and services platform encompassing a mobile application for booking and a web-based admin panel for service tracking.', 'TypeScript, Python, Flask', 'https://github.com/kennethlepas/nyumbanifixv1', '', '', 2),
             ('MkulimaHub', 'Digital platform providing smallholder farmers with precision agriculture tools, real-time market data, and access to advisory services. Applied human-centered design for low-digital-literacy users.', 'Python, Flask, SQLite', 'https://github.com/kennethlepas/MkulimaHub', '', '', 3),
-            ('BloodLink Admin Portal', 'Advanced administrative dashboard for hospital and platform-wide blood donation management, featuring reporting tools and inventory tracking.', 'JavaScript, Node.js, Firebase', 'https://github.com/kennethlepas/bloodlink-admin', '', '', 4),
-            ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 5),
-            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diabetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 6),
+            ('Sewage Billing System', 'A specialized billing and management system for sewage utility organizations, automating invoicing and customer record keeping.', 'C#, .NET, SQL Server', 'https://github.com/kennethlepas/SEWAGE-BILLING', '', '', 4),
+            ('Data Analytics Comprehensive analysis', 'A repository showcasing advanced data processing and visualization projects using real-world datasets like diabetes and churn, and statistical models.', 'Python, Jupyter Notebook, Power BI', 'https://github.com/kennethlepas/DSA-DataAnalytics', '', '', 5),
         ]
         for title, desc, tech, github, demo, img, order in defaults:
             existing = cls.query.filter_by(title=title).first()
@@ -154,7 +153,7 @@ class Certification(db.Model):
             ('Product Management 101', 'Simplilearn SkillUp', 'Dec 2025', '9533677', 'product_manager.pdf', 8),
             ('Professional Recommendation', 'Recommendation from Industry Mentor', '2026', '', 'recommendation.pdf', 9),
             ('Academic Transcript', 'Egerton University', '2026', '', 'transcript.png', 10),
-            ('AI Skills badge 2025-26', 'Microsoft Elevate', 'April 2026', '6p4OeYk9', 'ai.pdf', 11),
+            ('AI', 'ICT Authority Kenya & Pathways Technologies', 'April 2026', 'ICTA-1776709514-6162-39808', 'ai_certificate.pdf', 11),
             ('Enterprise Design Thinking Practitioner', 'IBM SkillsBuild', 'April 2026', 'XbC8qNW3', 'design.pdf', 12),
             ('Financial Literacy Training', 'LifeSmart', '2026', '', 'smart.jpeg', 13),
         ]
