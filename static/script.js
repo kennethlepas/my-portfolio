@@ -67,6 +67,9 @@ async function loadContent() {
                     <div class="issuer">${escapeHtml(cert.issuer)}</div>
                     <div class="date"><i class="far fa-calendar-alt"></i> ${escapeHtml(cert.date_earned)}</div>
                     ${cert.credential_id ? `<div class="credential-id"><i class="fas fa-id-card"></i> ID: ${escapeHtml(cert.credential_id)}</div>` : ''}
+                    <div class="cert-skills">
+                        ${cert.skills.map(skill => `<span>${escapeHtml(skill)}</span>`).join('')}
+                    </div>
                     ${cert.pdf_filename ? `
                         <div class="cert-actions">
                             <button onclick="viewCertificate('${cert.pdf_filename}')" class="btn-view">

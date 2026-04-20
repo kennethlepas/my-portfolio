@@ -34,7 +34,7 @@ class Section(db.Model):
             ('linkedin_url', 'https://linkedin.com/in/kennethlepas', 9),
             ('twitter_url', 'https://twitter.com/kennethlepas', 10),
             ('resume_url', '/static/certificates/cv.pdf', 11),
-            ('technical_skills', 'Python, Flask, JavaScript, SQL, TypeScript, React Native, Firebase, Node.js, C#, .NET, TCP/IP, VLANs, Routing & Switching, Ethical Hacking, Penetration Testing, Nmap, Metasploit, Power BI, Data Analytics, Human-Centered Design, Enterprise Design Thinking', 12),
+            ('technical_skills', 'Python, Flask, JavaScript, SQL, TypeScript, React Native, Firebase, Node.js, C#, .NET, TCP/IP, VLANs, Routing & Switching, Ethical Hacking, Penetration Testing, Nmap, Metasploit, Power BI, Data Analytics, Human-Centered Design, Enterprise Design Thinking, Artificial Intelligence', 12),
             ('profile_picture_url', '/static/certificates/profile.jpeg', 13),
         ]
         for key, content, order in defaults:
@@ -128,6 +128,7 @@ class Certification(db.Model):
     date_earned = db.Column(db.String(50))
     credential_id = db.Column(db.String(100))
     pdf_filename = db.Column(db.String(200))
+    skills = db.Column(db.String(500))
     order = db.Column(db.Integer, default=0)
 
     def to_dict(self):
@@ -137,36 +138,38 @@ class Certification(db.Model):
             'issuer': self.issuer,
             'date_earned': self.date_earned,
             'credential_id': self.credential_id,
-            'pdf_filename': self.pdf_filename
+            'pdf_filename': self.pdf_filename,
+            'skills': self.skills.split(',') if self.skills else []
         }
 
     @classmethod
     def create_default_certifications(cls):
         defaults = [
-            ('Human-Centered Design Training', 'Egerton University & Michigan State University', 'March 2026', '', 'hcd.jpg', 1),
-            ('Complete Network Hacking Course 2026', 'Udemy', 'March 2026', 'UC-71fbd1b4-5701-414b-a45c-4b61a7a4d6e3', 'hacking_udemy.pdf', 2),
-            ('Data Analytics Training', 'ICT Authority Kenya & Data Breed Africa', 'March 2026', 'ICTA-1773559998-6084-39808', 'ict_analytics.pdf', 3),
-            ('Ethical Hacking', 'Cisco Networking Academy', 'Feb 2026', '', 'hacking_cisco.pdf', 4),
-            ('CCNAv7: Switching, Routing, and Wireless Essentials', 'Cisco Networking Academy', 'Aug 2024', '', 'ccna2.pdf', 5),
-            ('CCNAv7: Introduction to Networks', 'Cisco Networking Academy', 'Apr 2024', '', 'ccna1.pdf', 6),
-            ('Introduction to Data Science', 'Kenyatta University via Cisco NetAcad', 'May 2024', '', 'datascience_cisco.pdf', 7),
-            ('Product Management 101', 'Simplilearn SkillUp', 'Dec 2025', '9533677', 'product_manager.pdf', 8),
-            ('Professional Recommendation', 'Recommendation from Industry Mentor', '2026', '', 'recommendation.pdf', 9),
-            ('Academic Transcript', 'Egerton University', '2026', '', 'transcript.png', 10),
-            ('AI', 'ICT Authority Kenya & Pathways Technologies', 'April 2026', 'ICTA-1776709514-6162-39808', 'ai_certificate.pdf', 11),
-            ('Enterprise Design Thinking Practitioner', 'IBM SkillsBuild', 'April 2026', 'XbC8qNW3', 'design.pdf', 12),
-            ('Financial Literacy Training', 'LifeSmart', '2026', '', 'smart.jpeg', 13),
+            ('Human-Centered Design Training', 'Egerton University & Michigan State University', 'March 2026', '', 'hcd.jpg', 'User Research, Prototyping, Empathy Mapping, User Testing', 1),
+            ('Complete Network Hacking Course 2026', 'Udemy', 'March 2026', 'UC-71fbd1b4-5701-414b-a45c-4b61a7a4d6e3', 'hacking_udemy.pdf', 'Network Security, Penetration Testing, Wireshark, Metasploit', 2),
+            ('Data Analytics Training', 'ICT Authority Kenya & Data Breed Africa', 'March 2026', 'ICTA-1773559998-6084-39808', 'ict_analytics.pdf', 'Data Visualization, SQL, Python, Power BI, Statistical Analysis', 3),
+            ('Ethical Hacking', 'Cisco Networking Academy', 'Feb 2026', '', 'hacking_cisco.pdf', 'Cybersecurity, Nmap, Vulnerability Assessment, Network Defense', 4),
+            ('CCNAv7: Switching, Routing, and Wireless Essentials', 'Cisco Networking Academy', 'Aug 2024', '', 'ccna2.pdf', 'VLANs, STP, Routing Protocols, Wireless Security', 5),
+            ('CCNAv7: Introduction to Networks', 'Cisco Networking Academy', 'Apr 2024', '', 'ccna1.pdf', 'TCP/IP, IP Addressing, Network Topology, Cisco IOS', 6),
+            ('Introduction to Data Science', 'Kenyatta University via Cisco NetAcad', 'May 2024', '', 'datascience_cisco.pdf', 'Machine Learning Foundations, Data Wrangling, Exploratory Data Analysis', 7),
+            ('Product Management 101', 'Simplilearn SkillUp', 'Dec 2025', '9533677', 'product_manager.pdf', 'Agile, Roadmap, Market Analysis, User Stories', 8),
+            ('Professional Recommendation', 'Recommendation from Industry Mentor', '2026', '', 'recommendation.pdf', 'Professionalism, Reliability, Communication', 9),
+            ('Academic Transcript', 'Egerton University', '2026', '', 'transcript.png', 'Software Engineering, Algorithms, Database Systems', 10),
+            ('AI', 'ICT Authority Kenya & Pathways Technologies', 'April 2026', 'ICTA-1776709514-6162-39808', 'ai_certificate.pdf', 'Artificial Intelligence, Generative AI, Prompt Engineering, LLMs', 11),
+            ('Enterprise Design Thinking Practitioner', 'IBM SkillsBuild', 'April 2026', 'XbC8qNW3', 'design.pdf', 'Design Thinking, Collaboration, Problem Solving', 12),
+            ('Financial Literacy Training', 'LifeSmart', '2026', '', 'smart.jpeg', 'Personal Finance, Budgeting, Investment', 13),
         ]
-        for name, issuer, date, cred_id, pdf_filename, order in defaults:
+        for name, issuer, date, cred_id, pdf_filename, skills, order in defaults:
             existing = cls.query.filter_by(name=name).first()
             if existing:
                 existing.issuer = issuer
                 existing.date_earned = date
                 existing.credential_id = cred_id
                 existing.pdf_filename = pdf_filename
+                existing.skills = skills
                 existing.order = order
             else:
-                db.session.add(cls(name=name, issuer=issuer, date_earned=date, credential_id=cred_id, pdf_filename=pdf_filename, order=order))
+                db.session.add(cls(name=name, issuer=issuer, date_earned=date, credential_id=cred_id, pdf_filename=pdf_filename, skills=skills, order=order))
         db.session.commit()
 
 class UserMessage(db.Model):

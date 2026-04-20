@@ -653,7 +653,24 @@ h2 {
     color: #64748b;
     font-size: 0.75rem;
     font-family: monospace;
+    margin-bottom: 0.8rem;
+}
+
+.cert-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
     margin-bottom: 1rem;
+}
+
+.cert-skills span {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .cert-actions {
